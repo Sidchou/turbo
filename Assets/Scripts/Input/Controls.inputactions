@@ -38,6 +38,17 @@
                 },
                 {
                     "name": "",
+                    "id": "85396bc4-9484-4cf6-ad2f-befac0d9a872",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e80efaa2-fe10-49a7-b3bd-57409efddc28",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",

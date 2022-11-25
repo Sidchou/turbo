@@ -60,6 +60,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""85396bc4-9484-4cf6-ad2f-befac0d9a872"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""e80efaa2-fe10-49a7-b3bd-57409efddc28"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -78,7 +89,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_oneButton = asset.FindActionMap("oneButton", throwIfNotFound: true);
         m_oneButton_Action = m_oneButton.FindAction("Action", throwIfNotFound: true);
         m_oneButton_Newaction = m_oneButton.FindAction("New action", throwIfNotFound: true);
-        UnityEngine.Debug.Log($"create controls");
     }
 
     public void Dispose()
@@ -155,7 +165,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_OneButtonActionsCallbackInterface != null)
             {
-                UnityEngine.Debug.Log($"remove listners");
                 @Action.started -= m_Wrapper.m_OneButtonActionsCallbackInterface.OnAction;
                 @Action.performed -= m_Wrapper.m_OneButtonActionsCallbackInterface.OnAction;
                 @Action.canceled -= m_Wrapper.m_OneButtonActionsCallbackInterface.OnAction;
@@ -166,7 +175,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             m_Wrapper.m_OneButtonActionsCallbackInterface = instance;
             if (instance != null)
             {
-                UnityEngine.Debug.Log($"Add listners");
                 @Action.started += instance.OnAction;
                 @Action.performed += instance.OnAction;
                 @Action.canceled += instance.OnAction;

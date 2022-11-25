@@ -8,7 +8,8 @@ public class CannonManager : MonoBehaviour
 {
     [SerializeField]
     GameObject PlayerGO;
-
+    [SerializeField]
+    MoveConfiner moveConfiner;
     List<Cannon> ActiveCannons = new List<Cannon>();
 
 
@@ -19,17 +20,18 @@ public class CannonManager : MonoBehaviour
 
     float destroyHeight = 12f;
 
+    [SerializeField]
     float maxDropBeforeGameOver = 20f;
 
     float deltaHeightForNewCannon = 6f;
 
     float nextCannonHeight = 15.6f;
+    float nextCannonHeightOffset = 10f;
     int initialCannons = 5;
 
     float currentDifficulty = 1f;
 
     public bool IsPlayerDead;
-
 
     public static CannonManager Instance;
     public UnityEvent OnPlayerDied = new UnityEvent();
@@ -39,7 +41,6 @@ public class CannonManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        
     }
 
     private void Start()
@@ -56,11 +57,9 @@ public class CannonManager : MonoBehaviour
 
                 PlayerGO.transform.localPosition = Vector3.up * 2f + cannon.transform.position;
                 PlayerGO.transform.localRotation = Quaternion.identity;
-
             }
             else
             {
-
                 InstantiateCannon(ActiveCannons[ActiveCannons.Count - 1].transform.position.x, initialHeight + deltaHeight * i);
             }
 
@@ -70,39 +69,42 @@ public class CannonManager : MonoBehaviour
 
     private void Update()
     {
-        var height = PlayerGO.transform.position.y;
-
-
-        if (height > playerMaxHeight)
+        if (!IsPlayerDead)
         {
-            playerMaxHeight = height;
-            OnScoreChanged.Invoke(playerMaxHeight);
-        }
+            var height = PlayerGO.transform.position.y;
 
-
-        if (playerMaxHeight >= nextCannonHeight)
-        {
-            nextCannonHeight += deltaHeightForNewCannon;
-            InstantiateCannon(ActiveCannons[ActiveCannons.Count - 1].transform.position.x, nextCannonHeight);
-        }
-
-
-        if (height < playerMaxHeight - maxDropBeforeGameOver || height < -2)
-        {
-            OnPlayerDied.Invoke();
-        }
-        for (int i = ActiveCannons.Count-1; i >= 0; i--)
-        {
-            if (ActiveCannons[i].transform.position.y <= playerMaxHeight - destroyHeight)
+            if (height > playerMaxHeight)
             {
-                DestroyCannon(ActiveCannons[i]);
+                playerMaxHeight = height;
+                OnScoreChanged.Invoke(playerMaxHeight);
+            }
 
+            if (playerMaxHeight >= nextCannonHeight +nextCannonHeightOffset)
+            {
+                nextCannonHeight += deltaHeightForNewCannon;
+                InstantiateCannon(ActiveCannons[ActiveCannons.Count - 1].transform.position.x, nextCannonHeight);
+            }
+
+            if (height < playerMaxHeight - maxDropBeforeGameOver)//|| height < -2)
+            {
+                OnPlayerDied.Invoke();
+                IsPlayerDead = true;
+                //PlayerGO.SetActive(false);
+            }
+            for (int i = ActiveCannons.Count - 1; i >= 0; i--)
+            {
+                if (ActiveCannons[i].transform.position.y <= playerMaxHeight - destroyHeight)
+                {
+                    DestroyCannon(ActiveCannons[i]);
+                }
             }
         }
     }
 
     public void Restart()
     {
+        //PlayerGO.SetActive(true);
+        PlayerGO.transform.position = Vector3.zero;
         playerMaxHeight = 0;
         PlayerGO.transform.parent = null;
         for (int i = ActiveCannons.Count - 1; i >= 0; i--)
@@ -110,8 +112,8 @@ public class CannonManager : MonoBehaviour
             DestroyCannon(ActiveCannons[i]);
         }
         PlayerGO.GetComponent<PlayerControls>().Reset();
+        moveConfiner.Reset();
         Start();
-
     }
 
 
@@ -121,7 +123,6 @@ public class CannonManager : MonoBehaviour
         cannon.Init(currentDifficulty);
         ActiveCannons.Add(cannon);
         return cannon;
-
     }
 
     void DestroyCannon(Cannon cn)
@@ -129,7 +130,6 @@ public class CannonManager : MonoBehaviour
         ActiveCannons.Remove(cn);
         Destroy(cn.gameObject);
     }
-
 }
 
 

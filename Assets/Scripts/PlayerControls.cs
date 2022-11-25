@@ -81,7 +81,7 @@ public class PlayerControls : MonoBehaviour
                 break;
         }
         if (Camera.main.WorldToScreenPoint(transform.position).y < -100) {
-            Debug.Log(Camera.main.WorldToScreenPoint(transform.position).y);
+            //Debug.Log(Camera.main.WorldToScreenPoint(transform.position).y);
         }
     }
 

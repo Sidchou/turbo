@@ -19,4 +19,9 @@ public class MoveConfiner : MonoBehaviour
         _pos.y = Mathf.Max(transform.position.y, _pos.y);
         transform.position = _pos;
     }
+    public void Reset()
+    {
+        vcam.transform.position = Vector3.up * -2;
+        gameObject.transform.position = Vector3.up*-2;
+    }
 }

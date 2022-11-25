@@ -61,9 +61,6 @@ public class InputManager : MonoBehaviour
         control.oneButton.Action.performed += ButtonDown;
         control.oneButton.Action.canceled += ButtonRelease;
 
-        control.Enable();
-        control.oneButton.Newaction.performed += ButtonDown;
-        control.oneButton.Newaction.canceled += ButtonRelease;
 
 
         //  playerControls = GetComponent<PlayerControls>();
@@ -122,7 +119,6 @@ public class InputManager : MonoBehaviour
         {
             
             time += Time.deltaTime;
-            Debug.Log(time);
             OnHoldValue.Invoke(Mathf.Min(1f, time / defaultHoldThreshold), time); ;
             if (time >= defaultHoldThreshold && !holdInvoked)
             {
