@@ -35,17 +35,37 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""147e007a-98ef-4dbf-9ad6-602366d63beb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""282ad65c-25ac-4f15-83dc-f455937763a9"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/anyKey"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e80efaa2-fe10-49a7-b3bd-57409efddc28"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -57,6 +77,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // oneButton
         m_oneButton = asset.FindActionMap("oneButton", throwIfNotFound: true);
         m_oneButton_Action = m_oneButton.FindAction("Action", throwIfNotFound: true);
+        m_oneButton_Newaction = m_oneButton.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -117,11 +138,13 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_oneButton;
     private IOneButtonActions m_OneButtonActionsCallbackInterface;
     private readonly InputAction m_oneButton_Action;
+    private readonly InputAction m_oneButton_Newaction;
     public struct OneButtonActions
     {
         private @Controls m_Wrapper;
         public OneButtonActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Action => m_Wrapper.m_oneButton_Action;
+        public InputAction @Newaction => m_Wrapper.m_oneButton_Newaction;
         public InputActionMap Get() { return m_Wrapper.m_oneButton; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -134,6 +157,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Action.started -= m_Wrapper.m_OneButtonActionsCallbackInterface.OnAction;
                 @Action.performed -= m_Wrapper.m_OneButtonActionsCallbackInterface.OnAction;
                 @Action.canceled -= m_Wrapper.m_OneButtonActionsCallbackInterface.OnAction;
+                @Newaction.started -= m_Wrapper.m_OneButtonActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_OneButtonActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_OneButtonActionsCallbackInterface.OnNewaction;
             }
             m_Wrapper.m_OneButtonActionsCallbackInterface = instance;
             if (instance != null)
@@ -141,6 +167,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Action.started += instance.OnAction;
                 @Action.performed += instance.OnAction;
                 @Action.canceled += instance.OnAction;
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
             }
         }
     }
@@ -148,5 +177,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IOneButtonActions
     {
         void OnAction(InputAction.CallbackContext context);
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

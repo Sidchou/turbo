@@ -432,3 +432,6 @@ Library
 Logs
 Assembly-CSharp.csproj
 *.dwlt
+UserSettings/EditorUserSettings.asset
+UserSettings/Search.index
+obj/Debug/Assembly-CSharp.csproj.AssemblyReference.cache

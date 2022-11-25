@@ -29,12 +29,4 @@ public class InputManager : MonoBehaviour
         control.oneButton.Action.canceled += playerControls.ButtonCanceled;
 
     }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
