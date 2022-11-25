@@ -78,6 +78,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_oneButton = asset.FindActionMap("oneButton", throwIfNotFound: true);
         m_oneButton_Action = m_oneButton.FindAction("Action", throwIfNotFound: true);
         m_oneButton_Newaction = m_oneButton.FindAction("New action", throwIfNotFound: true);
+        UnityEngine.Debug.Log($"create controls");
     }
 
     public void Dispose()
@@ -154,6 +155,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_OneButtonActionsCallbackInterface != null)
             {
+                UnityEngine.Debug.Log($"remove listners");
                 @Action.started -= m_Wrapper.m_OneButtonActionsCallbackInterface.OnAction;
                 @Action.performed -= m_Wrapper.m_OneButtonActionsCallbackInterface.OnAction;
                 @Action.canceled -= m_Wrapper.m_OneButtonActionsCallbackInterface.OnAction;
@@ -164,6 +166,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             m_Wrapper.m_OneButtonActionsCallbackInterface = instance;
             if (instance != null)
             {
+                UnityEngine.Debug.Log($"Add listners");
                 @Action.started += instance.OnAction;
                 @Action.performed += instance.OnAction;
                 @Action.canceled += instance.OnAction;

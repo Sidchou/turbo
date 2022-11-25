@@ -15,9 +15,17 @@ public class UIContainerMainMenu : UIContainerBase
     Image FadeImage;
 
 
+    
+
     public void StartGame()
     {
         FadeImage.DOFade(1f, 0.3f).OnComplete(() => SceneManager.LoadScene(GameSceneName));
         
     }
+
+
+
+
+
+
 }

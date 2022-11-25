@@ -25,7 +25,7 @@ public class UIButtonBase : MonoBehaviour
         m_IsSelected = Select;
         SelectedImage.enabled = m_IsSelected;
 
-        Debug.Log($"{m_IsSelected} {SelectedImage} {SelectedImage.enabled}", SelectedImage);
+     //   Debug.Log($"{m_IsSelected} {SelectedImage} {SelectedImage.enabled}", SelectedImage);
 
         FillImage.fillAmount = 0;
 

@@ -12,28 +12,54 @@ public class UIContainerBase : MonoBehaviour
     protected UIButtonBase[] uIButtons;
     protected int selectedIndex = 0;
 
+    [SerializeField]
+    private bool IsActive;
+
 
 
   
-    private void Start()
+    protected virtual void Start()
     {
         selectedIndex = 0;
         uIButtons = GetComponentsInChildren<UIButtonBase>();
-        InputManagerOld.Instance.Click.AddListener(OnClick);
-        InputManagerOld.Instance.HoldThreshold.AddListener(OnHoldThreshold);
-        InputManagerOld.Instance.HoldValue.AddListener(OnHoldValue);
-        Debug.Log($"Found {uIButtons.Length} buttons.");
+    //   Debug.Log(uIButtons.Length);
+        if (uIButtons.Length > 0 && IsActive)
+        {
+            Activate();
+
+           
+        }
+       
+    }
+
+
+
+    private void OnDestroy()
+    {
+        if (uIButtons.Length > 0)
+        {
+            Deactivate();
+        }
+      
+    }
+
+    protected void Activate()
+    {
+        InputManager.Instance.OnButtonUp.AddListener(OnClick);
+        InputManager.Instance.OnHoldThreshold.AddListener(OnHoldThreshold);
+        InputManager.Instance.OnHoldValue.AddListener(OnHoldValue);
         if (uIButtons.Length > 0)
         {
             Select();
         }
+
     }
 
-    private void OnDestroy()
+    protected void Deactivate()
     {
-        InputManagerOld.Instance.Click.RemoveListener(OnClick);
-        InputManagerOld.Instance.HoldThreshold.RemoveListener(OnHoldThreshold);
-        InputManagerOld.Instance.HoldValue.RemoveListener(OnHoldValue);
+        InputManager.Instance.OnButtonUp.RemoveListener(OnClick);
+        InputManager.Instance.OnHoldThreshold.RemoveListener(OnHoldThreshold);
+        InputManager.Instance.OnHoldValue.RemoveListener(OnHoldValue);
     }
 
 
@@ -59,7 +85,7 @@ public class UIContainerBase : MonoBehaviour
     {
         for (int i = 0; i < uIButtons.Length; i++)
         {
-            Debug.Log($"select {i} {selectedIndex == i}", uIButtons[i].gameObject);
+    //        Debug.Log($"select {i} {selectedIndex == i}", uIButtons[i].gameObject);
             uIButtons[i].Select(selectedIndex == i);
         }
     }

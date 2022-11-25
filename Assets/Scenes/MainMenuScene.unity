@@ -219,7 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 368728121}
-  - component: {fileID: 368728120}
+  - component: {fileID: 368728122}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -227,31 +227,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &368728120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368728119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92c68a67241c44f52ae3989b8aa8d9ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Click:
-    m_PersistentCalls:
-      m_Calls: []
-  DoubleClick:
-    m_PersistentCalls:
-      m_Calls: []
-  HoldValue:
-    m_PersistentCalls:
-      m_Calls: []
-  HoldThreshold:
-    m_PersistentCalls:
-      m_Calls: []
-  UseDoubleClick: 0
 --- !u!4 &368728121
 Transform:
   m_ObjectHideFlags: 0
@@ -267,6 +242,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &368728122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368728119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f26e90b794b00c44ab9bef20265b1ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnButtonDown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnButtonUp:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoldValue:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoldThreshold:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &619698559
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +549,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1717243781}
     m_Modifications:
+    - target: {fileID: 8753018226351148922, guid: 16ab21a4a5dbe4f29890e656d18448dd, type: 3}
+      propertyPath: IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8753018226351148922, guid: 16ab21a4a5dbe4f29890e656d18448dd, type: 3}
       propertyPath: FadeImage
       value: 
