@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerGO: {fileID: 1570802567}
-  moveConfiner: {fileID: 0}
+  moveConfiner: {fileID: 1377427117}
   CannonPrefab: {fileID: -8306440206661701677, guid: a8dbab00db6f449a08932e25863d045a, type: 3}
   maxDropBeforeGameOver: 10
   IsPlayerDead: 0
@@ -1256,8 +1256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a1e0fb75b5049b696a258d5ab6d14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedImage: {fileID: 236923939}
-  FillImage: {fileID: 1437534721}
+  SelectedImage: {fileID: 1806714489}
+  FillImage: {fileID: 1372669778}
   Event:
     m_PersistentCalls:
       m_Calls:
